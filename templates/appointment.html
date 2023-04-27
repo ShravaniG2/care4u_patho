@@ -1,0 +1,91 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+
+{% endblock head%}
+
+
+{% block title %}Reports {% endblock title %} 
+
+{% block body %} 
+
+  <form method="post">
+    {% csrf_token %}
+
+    
+    <div class="container text-center">
+      <h1 class="my-5">Select Patients:</h1>
+      {% if options %}
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group mb-5">
+            <select id="options" name="options" required class="form-select multi_select" placeholder="Select patient" data-search="true" data-silent-initial-value-set="true" aria-label="multiple select example">
+              {% for option in options %}
+              <option value="{{option.id}}" style="font-size:28px">{{ option.p_name }} , {{ option.p_age }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <p style="font-size: 30px; font-weight: light; text-align: center;">No patient in Patient List</p>
+      {% endif %}
+    </div>
+    
+    
+    <div class="container text-center">
+      <h1 class="my-5">Select Doctor:</h1>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group mb-5">
+            <select id="doctors" name="doctors" required class="form-select" placeholder="Select doctor" data-search="true" data-silent-initial-value-set="true" aria-label="multiple select example">
+              {% for doc in doctors %}
+              <option value="{{doc.d_id}}" style="font-size:28px">{{ doc.d_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container text-center">
+      <h1 class="my-5">Select date and Time slot:</h1>
+    
+    <div class="btn-group btn-group-toggle text-center my-3" data-toggle="buttons">
+      {% for d in dates %}
+        <label class="btn btn-success">
+          <input type="radio" name="selected_date" value="{{ d|date:'Y-m-d' }}" autocomplete="off" required>
+          {{ d|date:'F j' }}
+        </label>
+      {% endfor %}
+    </div>
+    
+    <div class="text-center">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="selected_time" value="7am - 12noon" id="radio1" autocomplete="off" required>
+        <label class="form-check-label btn-outline-primary" for="radio1">
+          7am - 12noon
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="selected_time" value="1pm - 5pm" id="radio2" autocomplete="off">
+        <label class="form-check-label" for="radio2">
+          1pm - 5pm
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="selected_time" value="5:30pm - 10pm" id="radio3" autocomplete="off">
+        <label class="form-check-label" for="radio3">
+          5:30pm - 10pm
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="text-center d-grid gap-3 col-4 mx-auto">
+    <button class="btn btn-primary p-3 m-3 border-2" type="submit" value="Submit">Submit</button> 
+</div>
+</div>
+  </form>
+
+{% endblock body %}
+

@@ -1,0 +1,108 @@
+{% extends 'masterpage.html' %}
+{% block head %}
+<style> 
+	.contact-info {
+		margin: 70px auto;
+		padding: 20px;
+		
+	  }
+	  
+	  h2 {
+		font-size: 28px;
+		margin-bottom: 10px;
+	  }
+	  
+	  ul {
+		list-style-type: none;
+		margin:0;
+		padding:0;
+	  }
+	  
+	  li {
+		margin-bottom: 10px;
+		font-size: 35px;
+	  }
+	  
+	  .label {
+		font-weight: bold;
+		margin-right: 10px;
+	  }
+	  
+
+</style> 
+
+
+{% endblock head%}
+
+
+{% block title %}Profile {% endblock title %} 
+
+{% block body %}
+<div style="background-color:#e5f2fb">
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-12">
+		  <div class="button-group text-center mt-5">
+			<button onclick="location.href='/userprofile/edit_profile'" type="button" class="btn btn-primary btn-lg mx-5" style="background-color: #75aa41;">Edit Profile</button>
+			<button onclick="location.href='/userprofile/relatives'" type="button" class="btn btn-secondary btn-lg mx-5" style="background-color: #42638f;">Add Patient List</button>
+			<button onclick="location.href='/userprofile/orderhistory'" type="button" class="btn btn-success btn-lg mx-5" style="background-color: #75aa41;">Order History</button>
+			
+			
+			<!--<button onclick="location.href='/userprofile/appointment'" type="button" class="btn btn-danger btn-lg mx-5">Appointment</button>
+			<button onclick="location.href='/userprofile/appointment_history'" type="button" class="btn btn-warning btn-lg mx-5">Appointment History</button>  -->
+
+		  </div>
+		</div>
+	  </div>
+
+	  <div class="row">
+		  <div class="contact-info">
+			<h1 class="mb-4 mt-1"style="font-size:75px;text-align:center;">Profile Details</h1>
+			<ul class="my-4">
+			  <li><span class="label">Name  :</span> {{user.first_name}} {{user.last_name}}</li>
+			  <li><span class="label">Email  :</span> {{user.username}}</li>
+			  <!-- <li><span class="label">Email  :</span> {{user.email}}</li> -->
+			</ul>
+		</div>
+	  </div>
+
+	</div>
+
+
+	<div class="container">
+	  <div class="row">
+		<h1 class="mb-4 mt-1"style="font-size:75px;text-align:center;">Patient List</h1>
+		<div class="col-md-12">
+		  <div class="card-deck ">
+			{% if relative %}
+
+				{% for i in relative%}
+				<div class="d-flex justify-content-center align-items-center my-4">
+
+					<div class="card col-md-6">
+					<div class="card-body">
+						<p class="card-text" style="font-size:25px">Name : {{i.p_name}}</p>
+						<p class="card-text" style="font-size:25px">Age : {{i.p_age}}</p>
+						<p class="card-text" style="font-size:25px">Id : {{i.id}}</p>
+
+						<a href="{% url 'delete_record' i.id %}" class="btn btn-danger">Delete</a>
+						<button type="button" onclick="location.href='/userprofile/edit_relatives/{{i.id}}'" class="btn btn-success float-right">Edit</button>
+
+					</div>
+					</div>
+				</div>
+				{%endfor%}
+			{% else %}
+			<p style="font-size: 35px;">   No patient in Patient List</p>
+		  {% endif %}	  
+
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+  
+ 
+  {% endblock body %}
+

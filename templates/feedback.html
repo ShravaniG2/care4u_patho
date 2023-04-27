@@ -1,0 +1,109 @@
+{% extends 'masterpage.html' %}
+{% block head %}
+
+<style> 
+	
+
+	h2{
+    text-align: center;
+    text-align-last: center;
+    color: #000000;
+    text-shadow: 1px 1px 3px #ababab;
+    font-family: "Cambria";
+  	font-size: 55px;
+  	letter-spacing: 2px;
+  	word-spacing: 1px; 
+	}
+  
+</style> 
+ {% endblock head%}
+
+{% block title %}Feedback {% endblock title%}
+
+{% block body %} 
+
+
+</br><h2><b>Feedback Page</b></h2></br>
+
+
+<div >
+	<form method="post" action="/feedback" autocomplete="on">
+		{% csrf_token %}
+
+        <div>
+            {% if messages %}	
+    
+                {% for message in messages %} 
+                      {%if "error" in message.tags %}
+                        <div class="col-lg-5 mb-2 mx-auto">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <b>{{ message }}</b> 
+                                <button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div> 
+                      {%endif%}
+                {% endfor %}
+    
+                {% for message in messages %} 
+                      {%if "success" in message.tags %}
+                          <div class="col-lg-5 mb-2 mx-auto">
+                               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <b>{{ message }}</b> 
+                                  <button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                      {%endif%}
+                {% endfor %}
+            {% endif %}		
+            </div>
+
+    
+    <!--to make floating label center-->
+      <div class=" col-lg-6 mx-auto">
+
+        <div class="form-floating mb-4 ">
+          <textarea class="form-control" required="" type="text" maxlength="500" name="experience" id="experience" placeholder="jhanvi" rows="2"></textarea>
+          <label for="experience">How was your experience </label>
+        </div>
+
+        <div class="form-floating mb-4 ">
+          <textarea class="form-control" required="" type="text" maxlength="500" name="improvement" id="improvement" required="" placeholder="pawar" rows="4"></textarea>
+          <label for="improvement">Things that you think must be improved</label>
+        </div>
+
+
+	<div id='toolbar'>
+        <div class='wrapper text-center'><p><span style=" font-size: 25px;">How would you rate your experience</span></p>
+            <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
+
+                <input type="radio" class="btn-check  btn-dark" name="rate" id="btnradio1" value="1" >
+                <label class="btn btn-outline-primary btn-light" for="btnradio1">1</label>
+
+                <input type="radio" class="btn-check btn-dark" name="rate" id="btnradio2" value="2" >
+                <label class="btn btn-outline-primary btn-light" for="btnradio2">2</label>
+
+                <input type="radio" class="btn-check btn-dark" name="rate" id="btnradio3" value="3" >
+                <label class="btn btn-outline-primary btn-light" for="btnradio3">3</label>
+            
+                <input type="radio" class="btn-check btn-dark" name="rate" id="btnradio4" value="4" >
+                <label class="btn btn-outline-primary btn-light" for="btnradio4">4</label>
+            
+                <input type="radio" class="btn-check btn-dark" name="rate" id="btnradio5" value="5">
+                <label class="btn btn-outline-primary btn-light" for="btnradio5">5</label>
+
+            </div>
+        </div>
+    </div>  
+    
+
+	<div class="text-center d-grid gap-3 col-4 mx-auto mb-3">
+    <button class="btn btn-primary btn-lg p-3 m-3 border-2" type="submit" value="Submit">Submit</button> 
+    </div>
+
+    
+  </form>
+</div>
+
+
+
+{% endblock body %}

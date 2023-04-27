@@ -1,0 +1,847 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+<style>
+
+                                                                  /*start of carousel*/
+
+  
+  .carousel-caption .carousel-title{
+    font-family: sans-serif; 
+    font-weight: 700; 
+    font-size: 45px; 
+    letter-spacing: 1px;
+    color:#ffffff;
+  } 
+  
+  .carousel-caption .carousel-descrip{
+    font-family: Andale Mono, monospace; 
+    font-weight: bold;
+    font-size:25px;
+    color:#ffffff;
+  }
+                                                              /*end of carousel*/
+
+                                                           /*start of best selling test*/
+
+  .h2forbestselltest {     
+    color: #333;
+    font-size:38px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    position: relative;
+    margin: 30px 0 60px;
+  }
+
+  
+  .h2forbestselltest::after {
+    content: "";
+    width: 235px;
+    position: absolute;
+    margin: 0 auto;
+    height: 4px;
+    background: #529cbc;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+  }  
+
+  .leftLst.carousel-control-prev, .rightLst.carousel-control-next {
+    height: 45px;
+    width: 45px;
+    bottom: 10px;
+    background: #ffffff;	
+    margin: auto 0;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.8);
+    right: 5px;
+  }
+
+  .leftLst.carousel-control-prev{left:5px;}
+
+  .leftLst.carousel-control-prev i, .rightLst.carousel-control-next i {
+    font-size: 38px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -19px 0 0 0;
+    z-index: 5;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    font-weight: bold;
+  }
+  .leftLst.carousel-control-prev i {
+    margin-left: -6px;
+  }
+
+  .rightLst.carousel-control-next i {
+    margin-left: 5px;
+  }  
+
+  .MultiCarousel { float: left; overflow: hidden; padding: 20px; width: 100%; position:relative; }
+  .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
+  .MultiCarousel .MultiCarousel-inner .item { float: left;}
+  .MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:8px; margin:15px; background:#e8f2ee;}
+
+                                                    /*end of best selling test */
+  
+                                                   /*start of customer review*/
+
+  
+
+  .h2forcustreview {
+    color: #333;
+    font-size:38px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    position: relative;
+    margin: 60px 0 50px;
+  }
+  .h2forcustreview::after {
+    content: "";
+    width: 170px;
+    position: absolute;
+    margin: 0 auto;
+    height: 4px;
+    background: #529cbc;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+  }  
+  
+  .carousel-indicators .custreviewbtn, button-indicators .custreviewbtn.active {
+    width: 18px;
+    height: 18px;
+    margin: -10px 5px;
+    border-radius: 20%;
+    border: none;
+  }
+  .carousel-indicators .custreviewbtn {	
+    background: #999;
+    box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+  }
+  .carousel-indicators .custreviewbtn.active {	
+    background: #555;		
+    box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+  }
+
+  .carousel .custreviewitem .carousel-item {
+    color: #566756;
+    font-size: 20px;
+    text-align: center;
+    height: 250px;    
+  } 
+
+  .carousel .custreviewitem .carousel-item .review{
+    font-size:22px;
+    margin: 0 40px 0 40px;
+  }
+  .carousel .custreviewitem .carousel-item .custname{
+    text-transform: uppercase; 
+    color: #529cbc; 
+    font-size:21px  
+  }
+
+  @media screen and (max-width: 601px) {    
+
+    .carousel .custreviewitem .carousel-item .review{
+      font-size:17px;
+      margin: 0 40px 0 40px;
+
+    }
+
+    .carousel .custreviewitem .carousel-item .custname{
+      font-size:16px;
+    }
+
+    .custreviewarrow.carousel-control-prev i , .custreviewarrow.carousel-control-next i {
+      font-size: 15px;
+      line-height: 20px;
+      
+    }
+
+    carousel-indicators .custreviewbtn, button-indicators .custreviewbtn.active {
+      width: 13px;
+      height: 13px;
+    }
+  }
+
+  .custreviewarrow.carousel-control-prev, .custreviewarrow.carousel-control-next {
+    width: 5px;
+    height: 5px;
+    margin-top: 20px;
+    top: 10%;
+    background: none;
+  }
+
+  .custreviewarrow.carousel-control-prev i , .custreviewarrow.carousel-control-next i {
+    font-size: 60px;
+    line-height: 42px;
+    position: absolute;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
+  }
+
+  .cust .carousel-indicators {
+    bottom: -45px;
+  }
+  
+                                                               /*end of customer review*/
+
+                                                               /*start of best selling packages*/
+
+  .card-body .h4card-title{
+    font-family: 'Varela Round', sans-serif; 
+    font-size:22px; 
+    font-weight:600;
+  }
+
+   
+                                                   /*end of best selling packages*/
+
+</style>
+
+
+
+
+<script>
+      $(document).ready(function () {                  /*code for Slide of test n packages only*/
+        var itemsMainDiv = ('.MultiCarousel');
+        var itemsDiv = ('.MultiCarousel-inner');
+        var itemWidth = "";
+    
+        $('.leftLst, .rightLst').click(function () {
+            var condition = $(this).hasClass("leftLst");
+            if (condition)
+                click(0, this);
+            else
+                click(1, this)
+        });
+    
+        ResCarouselSize();    
+        $(window).resize(function () {
+            ResCarouselSize();
+        });
+    
+        //this function define the size of the items
+        function ResCarouselSize() {
+            var incno = 0;
+            var dataItems = ("data-items");
+            var itemClass = ('.item');
+            var id = 0;
+            var btnParentSb = '';
+            var itemsSplit = '';
+            var sampwidth = $(itemsMainDiv).width();
+            var bodyWidth = $('body').width();
+            $(itemsDiv).each(function () {
+                id = id + 1;
+                var itemNumbers = $(this).find(itemClass).length;
+                btnParentSb = $(this).parent().attr(dataItems);
+                itemsSplit = btnParentSb.split(',');
+                $(this).parent().attr("id", "MultiCarousel" + id);
+    
+    
+                if (bodyWidth >= 1200) {
+                    incno = itemsSplit[3];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 992) {
+                    incno = itemsSplit[2];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 768) {
+                    incno = itemsSplit[1];
+                    itemWidth = sampwidth / incno;
+                }
+                else {
+                    incno = itemsSplit[0];
+                    itemWidth = sampwidth / incno;
+                }
+                $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+                $(this).find(itemClass).each(function () {
+                    $(this).outerWidth(itemWidth);
+                });
+    
+                $(".leftLst").addClass("over");
+                $(".rightLst").removeClass("over");
+    
+            });
+        }
+    
+    
+        //this function used to move the items
+        function ResCarousel(e, el, s) {
+            var leftBtn = ('.leftLst');
+            var rightBtn = ('.rightLst');
+            var translateXval = '';
+            var divStyle = $(el + ' ' + itemsDiv).css('transform');
+            var values = divStyle.match(/-?[\d\.]+/g);
+            var xds = Math.abs(values[4]);
+            if (e == 0) {
+                translateXval = parseInt(xds) - parseInt(itemWidth * s);
+                $(el + ' ' + rightBtn).removeClass("over");
+    
+                if (translateXval <= itemWidth / 2) {
+                    translateXval = 0;
+                    $(el + ' ' + leftBtn).addClass("over");
+                }
+            }
+            else if (e == 1) {
+                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                translateXval = parseInt(xds) + parseInt(itemWidth * s);
+                $(el + ' ' + leftBtn).removeClass("over");
+    
+                if (translateXval >= itemsCondition - itemWidth / 2) {
+                    translateXval = itemsCondition;
+                    $(el + ' ' + rightBtn).addClass("over");
+                }
+            }
+            $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+        }
+    
+        //It is used to get some elements from btn
+        function click(ell, ee) {
+            var Parent = "#" + $(ee).parent().attr("id");
+            var slide = $(Parent).attr("data-slide");
+            ResCarousel(ell, Parent, slide);
+        }
+    
+      });
+
+      
+
+    $(function () {               /*code for tooltip only*/
+      $('.addtocart').tooltip()      
+    })
+
+      
+
+    if(localStorage.getItem('cart') == null){                /*code for add to cart button only*/
+      var cart = {};
+
+    }
+    else{
+      cart = JSON.parse(localStorage.getItem('cart'));
+      window.onload = function() {
+        updatecart(cart);
+      };
+    }
+
+    $(document).ready(function(){
+      $('.addtocart').click(function(){
+        var itemId = $(this).attr('id').toString();
+        console.log(itemId);        
+
+        if(cart[itemId] != undefined){
+          qty=cart[itemId][0]+1;
+          name = document.getElementById('name' +itemId).innerHTML;
+          cart[itemId]=[qty,name,amt];
+        }
+        else{
+          qty=1;
+          name = document.getElementById('name' +itemId).innerHTML;
+          amt = document.getElementById('amt' +itemId).innerHTML;
+          //myInputName = $(this).attr('name');
+          cart[itemId]=[qty,name,amt];
+        }
+        updatecart(cart);
+        console.log(cart);
+      });
+    });
+
+    function updatecart(cart){
+      for (var item in cart) {
+        if (cart[item][0] === 0) {
+          document.getElementById('div' + item).innerHTML = "<button id='test" + item + "' class='btn btn-primary addtocart' aria-label='okay' role='presentation'>Add To Cart</button>";
+        } else {
+          document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''><b>" + cart[item][0] + "</b></span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+        }
+      }
+      localStorage.setItem('cart',JSON.stringify(cart));
+    }
+
+    
+
+    
+    $(document).ready(function() {
+      $(".divtest").on("click", ".minus", function() {
+        a=this.id.slice(9, );
+    var cart = JSON.parse(localStorage.getItem('cart'));
+    cart['test' + a][0] = cart['test' + a][0] - 1;
+    cart['test' + a][0] = Math.max(0, cart['test' + a][0]);
+    if (cart['test' + a][0] == 0) {
+      delete cart['test' + a];
+    }
+    updatecart(cart); 
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('valtest' + a).innerHTML = cart['test' + a][0];
+    updatecart(cart);  
+    console.log(cart); 
+      });
+    });
+
+    
+    $(document).ready(function() {
+      $(".divtest").on("click", ".plus", function() {
+        console.log("Button clicked plus wala");
+        a = this.id.slice(8, );
+        cart['test' + a][0] = cart['test' + a][0] + 1;
+        document.getElementById('valtest' + a).innerHTML = cart['test' + a][0];
+        updatecart(cart);
+        console.log(cart);
+
+      });
+    });
+
+
+    $(document).ready(function() {
+      $(".divpackage").on("click", ".minus", function() {
+        console.log("Button clicked minus wala");
+        var a=this.id.slice(12, );
+        var cart = JSON.parse(localStorage.getItem('cart'));
+        cart['package' + a][0] = cart['package' + a][0] - 1;
+        cart['package' + a][0] = Math.max(0, cart['package' + a][0]);
+        
+        if (cart['package' + a][0] == 0) {
+          delete cart['package' + a];
+        }
+        updatecart(cart); 
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('valpackage' + a).innerHTML = cart['package' + a][0];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updatecart(cart);  
+        console.log(cart);   
+      });
+    });
+
+    $(document).ready(function() {
+      $(".divpackage").on("click", ".plus", function() {
+        console.log("Button clicked plus wala");
+        a = this.id.slice(11, );
+        cart['package' + a][0] = cart['package' + a][0] + 1;
+        document.getElementById('valpackage' + a).innerHTML = cart['package' + a][0];
+        updatecart(cart);
+        console.log(cart);
+
+      });
+    });
+   
+    
+
+
+</script>
+
+
+
+{% endblock head%}
+
+{% block title %}Home {% endblock title %}
+
+{% block body %}
+{% load static %}
+
+
+<!--start of carousel-->
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" class="" aria-current="true"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" class="" aria-current="true"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4" class="" aria-current="true"></button>
+    </div>
+
+    <div class="carousel-inner ">
+
+      <div class="carousel-item active" data-bs-interval="3000">
+        <img src="static/t1.png" width="800" height="500" class="d-block w-100" alt="okay"/>
+        <div class="carousel-caption">
+          <h5 class="carousel-title"  style="text-shadow: 2px 1px 2px #ff00d0;">Most secure way of testing</h5>
+          <!--<p class="carousel-descrip" style="color:#000000; text-shadow: 0.4px 0.4px #bababa;">Experience the one of the most secure way of diagnostic testing.</p>-->
+        </div>
+      </div> 
+
+      
+      <div class="carousel-item " data-bs-interval="3000">
+        <img src="static/t2.gif" width="800" height="500" class="d-block w-100" alt="okay"/>
+        <div class="carousel-caption">
+          <h5 class="carousel-title" style="text-shadow: 2px 1px 2px #3ec205">Finest doorstep service</h5>
+          <!--<p class="carousel-descrip" style="color:#000000;text-shadow: 0.3px 0.3px #ecfbe4;">Stay safe at your place as we get there to collect your sample.</p>-->
+        </div>   
+      </div>
+      
+      
+      <div class="carousel-item " data-bs-interval="3000">
+        <img src="static/t3.jpg" width="800" height="500" class="d-block w-100" alt="okay"/>
+        <div class="carousel-caption">
+          <h5 class="carousel-title col-lx-12" style="text-shadow: 2px 1px 2px #dc0404">Highly skilled Pathologists</h5>
+          <!--<p class="carousel-descrip" style="text-shadow: 0.5px 0.5px #a1a1a1;">We have wide range of highly skilled pathologist.</p>-->
+        </div>
+      </div>
+      
+     
+      <div class="carousel-item " data-bs-interval="3000">
+        <img src="static/t4.jpg" width="800" height="500" class="d-block w-100" alt="okay"/>
+        <div class="carousel-caption">
+          <h5 class="carousel-title" style="text-shadow: 2px 1px 2px #393bdb;">Best technology availble</h5>
+          <!--<p class="carousel-descrip" style="text-shadow: 0.5px 0.5px #a3a3a3;">Get yourself best of all technology for your all you're tests.</p>-->
+        </div>
+      </div>     
+    
+      
+
+    </div>
+
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" ></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div> 
+
+<!--end of carousel-->
+
+
+<!--start of best selling tests-->
+
+<div class="container-fluid col-sm-10 my-4">
+  <h2 class="h2forbestselltest px-2 pt-5">Best Selling Test</h2>
+	<div class="row mx-auto">
+		<div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel" data-interval="1000">
+      <div class="MultiCarousel-inner col-sm-4 mx-auto">
+
+
+       {% for i in mytest|slice:"0:" %}
+            <div class="item col-sm-3 col-md-3">
+              <div class="pad15 rounded-3">
+                <div class="card rounded-4" >
+                  <img src="static/chem.gif" height="220px" width="30px" class="card-img-top img-fluid" alt="ok">
+
+                  <div class="card-body">
+
+                    <div onclick="location.href='/testpage/{{i.test_id}}'">
+                      <h3 class="card-title" style="font-size:32px" id="nametest{{i.test_id}}">{{i.t_name}}</h3>
+                      <p class="card-text" style="font-size:23px;font-weight:400" id="amttest{{i.test_id}}">₹{{i.t_amt}}</p>
+                    </div>
+                    <span id="divtest{{i.test_id}}" class="divtest">
+                      <button id="test{{i.test_id}}" class="btn btn-info addtocart">Add To Cart</button>
+                    </span>
+    
+
+                  </div>
+                </div>
+              </div>
+              {% if forloop.counter|divisibleby:10 and forloop.counter > 0 and not forloop.last%}
+            </div><div class="item col-sm-3 col-md-3">
+              {% endif %}
+            </div>
+
+            
+              {% endfor %}
+
+
+    </div>
+
+    <a class="leftLst carousel-control-prev" data-slide="prev">
+      <i class="fa fa-angle-left"></i>
+    </a>
+    <a class="rightLst carousel-control-next"  data-slide="next">
+      <i class="fa fa-angle-right"></i>
+       </a>
+
+
+        </div>
+	</div>
+
+</div>
+
+
+
+<!--end of best selling test-->
+
+
+
+<!--start of customer review-->
+
+<div class="container-fluid" style="background-color:#f4f7fb">
+	<div class="row ">
+		<div class="col-lg-10 mx-auto ">
+			<h3 class="h2forcustreview pt-4">Customer Review</h3>
+
+			<div id="custreviewcarousel" class="carousel slide mb-5" data-ride="carousel">
+				<div class="cust carousel-indicators">
+                      <button type="button" data-target="#custreviewcarousel" data-slide-to="0" class="custreviewbtn active"></button>
+                      <button type="button" data-target="#custreviewcarousel" data-slide-to="1" class="custreviewbtn"></button>
+                      <button type="button" data-target="#custreviewcarousel" data-slide-to="2" class="custreviewbtn"></button>
+                    </div>
+
+
+				<!-- Wrapper for carousel items -->
+				<div class="custreviewitem carousel-inner" data-interval="100000">
+
+					<div class="carousel-item active">
+              <p class="review">One day a rabbit was boasting about how fast he could run. He was laughing at the turtle for being so slow. Much to the rabbit’s surprise, the turtle challenged him to a race.</p>
+            <p class="custname mt-4" style=""><b >Customer Name 1</b></p>
+					</div>
+
+					<div class="custreviewitem carousel-item" data-interval="100000">
+              <p class="review">The rabbit thought this was a good joke and accepted the challenge. The fox was to be the umpire of the race. As the race began, the rabbit raced way ahead of the turtle.</p>
+            <p class="custname mt-4" style=""><b >Customer Name 2</b></p>
+					</div>
+
+					<div class="custreviewitem carousel-item" data-interval="100000">
+              <p class="review">The rabbit got to the halfway point and could not see the turtle anywhere. He was hot and tired and decided to stop and take a short nap.</p>
+            <p class="custname mt-4" style=""><b>Customer Name 3</b></p>
+					</div>
+				</div>
+				<!-- Carousel controls -->
+				
+                <button class="custreviewarrow carousel-control-prev" type="button" data-target="#custreviewcarousel" data-slide="prev">
+                    <i class="fa fa-angle-left " ></i>
+                    <span class="carousel-control-prev-icon"></span>                    
+                  </button>
+                  <button class="custreviewarrow carousel-control-next" type="button" data-target="#custreviewcarousel" data-slide="next">
+					          <i class="fa fa-angle-right"></i>
+                    <span class="carousel-control-next-icon"></span>
+                  </button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--end of customer review-->
+
+
+<!--start of best selling package-->
+
+<div class="container-fluid col-sm-10 my-4" >
+  <h2 class="h2forbestselltest px-2 pt-5" style="">Best Selling Package</h2>
+	<div class="row col-lx-6 mx-auto">
+		<div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel" data-interval="1000">
+      <div class="MultiCarousel-inner col-lx-3 mx-auto">
+            
+              
+              {% for i in mypackage|slice:"0:" %}
+              <div class="item" >
+                <div class="pad15 rounded-3">
+                  <div class="card rounded-4">
+                    <img src="static/chem1.gif" height="220px" width="30px" class="card-img-top img-fluid" alt="ok">
+                    <div class="card-body">
+                      
+                      <div onclick="location.href='/packagepage/{{i.package_id}}'" >
+                        <h4 class="h4card-title" id="namepackage{{i.package_id}}">{{i.package_name}}</h4>
+                        <p style="font-size:18px">{{i.description|truncatechars:20}}...</p>
+                        <p style="font-size:22px; font-weight:400;"  id="amtpackage{{i.package_id}}">₹{{i.package_amt}}</p>   
+                      </div>
+
+                      <span id="divpackage{{i.package_id}}" class="divpackage">
+                        <button id="package{{i.package_id}}" class="btn btn-info addtocart">Add To Cart</button> 
+                      </span>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+                {% if forloop.counter|divisibleby:10 and forloop.counter > 0 and not forloop.last%}
+              </div><div class="item col-sm-3 col-md-3">
+                {% endif %}
+              </div>
+                {% endfor %}
+                  
+                
+    </div>
+
+    <a class="leftLst carousel-control-prev" data-slide="prev"> 
+      <i class="fa fa-angle-left"></i>
+    </a>
+    <a class="rightLst carousel-control-next" data-slide="next">
+      <i class="fa fa-angle-right"></i>
+       </a>
+
+
+        </div>
+	</div> 
+	
+</div>
+
+
+<!--end of best selling package-->
+
+
+
+<!--start of what we offer-->
+
+<!-- <div class="row py-4" style="background-color:#f4f7fb">
+  <div class="container">
+
+      <div class="text-align-center">
+          <h2 class="h2forbestselltest display-inline-block pt-5 px-3 font-size-1-375rem m-0  ">
+              <strong>What We Offer</strong>
+          </h2>
+      </div>
+      
+      <div class="mt-5 p-5 mx-4 border-radius-1">
+          <div class="row">
+
+              <div class="col-12 col-sm-6 col-md-4 text-align-center">
+                  <div class="py-3">
+                      <h3 class="display-inline vertical-align-middle ml-3" style="color:#007070;font-size:38px">Doorstep collection</h3>
+                  </div>
+                  <p class="line-h-1-5rem" style="font-size:20px">Laboratory practitioners will collect test samples from your door step</p>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 text-align-center">
+                  <div class="py-3">
+                      <h3 class="display-inline vertical-align-middle ml-3" style="color:#029797;font-size:38px">Maintain Report's</h3>
+                  </div>
+                  <p class="line-h-1-5rem" style="font-size:20px">Get the reports on your account and maintain them systematically</p>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 text-align-center" >
+                  <div class="py-3">
+                      <h3 class="display-inline vertical-align-middle ml-3" style="color:#5cb7b7;font-size:38px">Skilled Pathologist</h3>
+                  </div>
+                  <p class=" line-h-1-5rem" style="font-size:20px">Trained professional's carry out test with advance technological procedures</p>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 text-align-center">
+                  <div class="py-3">
+                      <svg class="vertical-align-middle" version="1.2"  overflow="visible" preserveAspectRatio="none" viewBox="0 0 24 24" width="48" height="48">
+                      </svg>
+                      <h3 class="display-inline vertical-align-middle ml-3" style="color:#367d44;font-size:38px">Happy Customer</h3>
+                  </div>
+                  <p class="line-h-1-5rem" style="font-size:20px">Majority of customer's are Satisfied to use our services</p>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 text-align-center">
+                  <div class="py-3">
+                      <svg class="vertical-align-middle" version="1.2" overflow="visible" preserveAspectRatio="none" viewBox="0 0 24 24" width="48" height="48">
+                          
+                      </svg>
+                      <h3 class="display-inline vertical-align-middle ml-3" style="color:#38b26f;font-size:38px">Trusted Labs</h3>
+                  </div>
+                  <p class="line-h-1-5rem" style="font-size:20px">Best trusted labs for accurate report</p>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-4 text-align-center">
+                  <div class="py-3">
+                      <svg class="vertical-align-middle" version="1.2" overflow="visible" preserveAspectRatio="none" viewBox="0 0 24 24" width="48" height="48">
+                          
+                      </svg>
+                      <h3 class="display-inline vertical-align-middle" style="color:#5dd0aa;font-size:38px">Reasonable Rate</h3>
+                  </div>
+                  <p class="line-h-1-5rem" style="font-size:20px">Decent prices for tests and packages</p>
+              </div>
+
+          </div>
+      </div>
+      
+      
+
+
+      </div>
+  </div>
+</div>   -->
+
+<!--end of what we offer-->
+
+
+
+<!--start of FAQ-->
+<div class="row" style="background-color:#f4f7fb">
+  <div class="container py-4">
+
+      <div class="text-align-center">
+          <h2 class="h2forbestselltest display-inline-block mt-5 px-3 font-size-1-375rem m-0  ">
+              <strong>F A Q</strong>
+          </h2>
+      </div>
+
+      <div class="accordion pt-4 pb-2 my-5 mx-5" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <b> Why are lab tests essential? </b>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" >
+            <div class="accordion-body">
+              Doctors recommend lab tests or diagnostic tests when they suspect something is wrong with your health. When blood, stool, urine, or mucus samples are analysed, they can reveal a lot about your health. Once the problem has been identified, your doctor can make a diagnosis and either prescribe medication or suggest a course of treatment.
+
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo" >
+              <b>How efficient is the sample collection and analysis process?</b>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" >
+            <div class="accordion-body">
+              The samples are collected with the utmost care while maintaining complete hygiene. We only use brand new collection kits and needles. Following collection, the sample is immediately placed in an icebox to prevent degradation and bacterial buildup, which could lead to an incorrect diagnosis. The samples are barcode tagged to prevent contamination, and technicians in the laboratories analyse the samples using high-end, cutting-edge technology.
+
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <b>Professionally Trained Technicians</b>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+              Qualified and trained phlebotomists from our Certified Diagnostic Labs and collection centers come to your door to collect samples in a safe, sanitary, and convenient manner. Care4U brings the best diagnostics to your door for all of your diagnostic needs. 
+            </div>
+          </div>
+        </div>
+        
+      </div>
+  </div>
+</div>
+
+<!--end of FAQ-->
+
+<div class="row text-center">
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://donnatempo.it/dosaggi-ormonali-quando-vanno-fatti-come-leggerli-costo/ </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://www.scckw.com/en/ </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://www.ucitesting.com/drug-testing </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : http://alpharabi.com/index_en.php </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://www.indiacom.com/bp/dhande-laboratory_in_pune/ </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://www.graphicsprings.com/ </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://www.iconfinder.com/icons/1250954/lab_assistant_lab_technician_laboratory_medical_pathology_scientist_icon </p>
+  <p class="font-italic text-muted mb-0">&copy; Image copyrights to : https://donnatempo.it/dosaggi-ormonali-quando-vanno-fatti-come-leggerli-costo/ </p>
+</div>
+
+
+
+{%endblock body%}
+
+

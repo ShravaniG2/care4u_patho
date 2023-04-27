@@ -1,0 +1,317 @@
+{% extends 'masterpage.html' %}
+{% block head %}
+
+<style>
+  table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-align: left;
+      padding: 10px;
+    }
+    
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    /*tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }*/
+    
+    tr:hover {
+      background-color: #ddd;
+    }
+
+
+  
+    
+    .multi_select_box{
+      width: 500px;
+      margin: 20px auto;
+    }
+    
+
+
+    
+  
+</style>
+
+
+{% endblock head%}
+
+{% block title %}Cart {% endblock title %}
+
+{% block body %}
+
+<div style="background-color:#eefbf1">
+
+
+
+
+<h1 class="py-4">Display of test : </h1> 
+<button id="clearBtn" type="button" class="btn btn-warning btn-lg mx-5" onclick="clearCart()">Clear Cart</button>
+
+<div id="total" style="font-family:Times New Roman;color:#499c7c;text-align:center;font-size:65px;font-weight:bold;"></div>
+
+<div id="my-element"></div>
+
+
+
+<script>
+  
+  $(document).ready(function(){
+    $('.multi_select').selectpicker();
+  })
+
+
+  // js for clearCart button
+  if (localStorage.length === 0) {
+    document.getElementById("clearBtn").style.display = "none";
+  }
+  function clearCart() {
+    localStorage.clear();
+    sessionStorage.clear();
+    location.reload();
+  } 
+
+
+
+  // Retrieve data from local storage
+  const data = JSON.parse(localStorage.getItem('cart'));
+
+  // Get a reference to the HTML element where the table will be displayed
+  const myElement = document.getElementById('my-element');
+
+  if (!data || Object.keys(data).length === 0) {
+      myElement.innerHTML = "<p style='font-size: 30px; font-weight: light; text-align: center;'>Your cart is empty.<br>Add items to your cart by clicking on add to cart button</p>";
+  } 
+  else {
+      // Generate HTML for the table
+      let html = '<table class=" my-5"> <tr style="font-size:25px;"><th>Item</th>  <th>Quantity</th>  <th>Amount</th>  </tr>';
+
+      // Generate table rows for each array element
+      for (let key in data) {
+            // Extract the quantity and test name from the array element
+            const quantity = data[key][0];
+            const testName = data[key][1];
+            const amt = data[key][2];
+            const a=parseInt(amt.substring(1));
+            const cost=quantity*a;
+
+            //Generate a table row for each array element
+            html += '<tr style="font-size:23px;background-color:white"><td>' + testName + '</td><td>' + quantity + '</td></td>'+ '</td><td>' + cost + '</td></tr>';
+          } 
+
+        // Set the HTML of the element to the generated table
+        myElement.innerHTML = html;
+
+        const cells = document.querySelectorAll('table td:nth-child(3)');
+        let sum = 0;
+        
+        for (let i = 0; i < cells.length; i++) {
+        sum += parseInt(cells[i].textContent);
+        }
+        
+        const totalElement = document.createElement('div');
+        totalElement.textContent = 'Total : ₹ ' + sum;
+        
+        document.querySelector('#total').appendChild(totalElement);
+
+
+      html += '</table>';
+}
+
+
+
+
+var cart_data = JSON.parse(localStorage.getItem('cart'));
+console.log(cart_data);
+var temparr= cart_data
+
+var cart_empty = [];
+/*for(let i = 0; i<cart_data.length;i++){
+  cart_empty.push(cart_data[i]);
+}
+console.log(cart_empty);*/
+
+for (let i = 0; i < temparr.size; i++) {
+  var innerArrayLength = temparr[i].size;
+
+    for (let j = 0; j < innerArrayLength; j++) {
+      cart_empty.push(temparr[i][j]);
+console.log(cart_empty);
+
+    }
+}
+
+
+
+
+</script>
+
+
+
+
+
+{% if user.is_authenticated %}
+
+<form method="post" action="/cart">
+
+  {% csrf_token %}
+
+  <div>
+    {% if messages %}	
+
+      {% for message in messages %}
+            {%if "error" in message.tags %}
+              <div class="col-lg-5 mb-2 mx-auto">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <b>{{ message }}</b> 
+                  <button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div> 
+            {%endif%}
+      {% endfor %}
+
+      {% for message in messages %} 
+            {%if "success" in message.tags %}
+                <div class="col-lg-5 mb-2 mx-auto">
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <b>{{ message }}</b> 
+                    <button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+            {%endif%}
+      {% endfor %}
+    {% endif %}		
+  </div>
+
+<input type="hidden" name="itemsJson" id="itemsJson">
+
+
+  <h1 class="text-center">Enter Address : </h1> 
+  <div class="col-sm-6 col-lg-6 mx-auto">  
+    <div class="form-floating my-5">
+      <textarea rows="10" cols="20" class="form-control" required="" type="text" maxlength="500" name="address" id="address" placeholder="address"></textarea>
+      <label for="address">Address</label>
+    </div>
+  </div>
+
+
+
+<h1 class="text-center my-5">Select Patients : </h1>
+{% if options %}
+  <div class="multi_select_box ">
+        <select id="options" name="options" size="4" multiple required class="form-select multi_select w-100" placeholder="Select patient" data-search="true" data-silent-initial-value-set="true" >
+            {% for option in options %}
+                <option value="{{option.id}}" style="font-size:28px">{{ option.p_name }} , {{ option.p_age }}</option>
+            {% endfor %}
+        </select>
+      </div>
+    <br><br>
+       
+      {% else %}
+    <p style="font-size: 30px; font-weight: light; text-align: center;">   No patient in Patient List</p>
+    {% endif %}
+      
+
+
+   <!-- <h1 class="text-center">Select Doctor : </h1>
+    <div class="multi_select_box mb-5">
+          <select id="doctors" name="doctors" multiple size="4" class="form-select w-100" placeholder="Select doctor" data-search="true" data-silent-initial-value-set="true" >
+              {% for doc in doctors %}
+                  <option value="{{doc.d_id}}" style="font-size:28px">{{ doc.d_name }}</option>
+              {% endfor %}
+          </select>
+        </div> -->
+          
+
+        <h1 class="text-center mb-5">Enter Doctor Name : </h1> 
+        <div class="col-sm-6 col-lg-6 mx-auto">  
+          <div class="form-floating my-5">
+            <input class="form-control" required="" type="text" maxlength="500" name="d_name" id="d_name" placeholder="address"></input>
+            <label for="d_name">Doctor Name</label>
+          </div>
+        </div>
+
+
+        <h1 class="text-center mb-5">Enter Doctor Email : </h1> 
+        <div class="col-sm-6 col-lg-6 mx-auto">  
+          <div class="form-floating my-5">
+            <input class="form-control" required="" type="email" maxlength="500" name="d_email" id="d_email" placeholder="address"></input>
+            <label for="d_email">Doctor Email</label>
+          </div>
+        </div>
+
+
+<h1 class="text-center my-5">Select Date and Time : </h1>
+
+      <div class="d-flex justify-content-center align-items-center mb-5">
+        <div class="form-check mx-2">
+          <input class="form-check-input" type="radio" name="selected_time" value="7am - 12noon" id="radio1" autocomplete="off" required>
+          <label class="form-check-label btn-outline-primary" for="radio1">
+            7am - 12noon 
+          </label>
+        </div>
+        <div class="form-check mx-2">
+          <input class="form-check-input" type="radio" name="selected_time" value="1pm - 5pm" id="radio2" autocomplete="off">
+          <label class="form-check-label" for="radio2">
+            1pm - 5pm   
+          </label>
+        </div>
+        <div class="form-check mx-2">
+          <input class="form-check-input" type="radio" name="selected_time" value="5:30pm - 10pm" id="radio3" autocomplete="off">
+          <label class="form-check-label" for="radio3">
+            5:30pm - 10pm   
+          </label>
+        </div>
+      </div> 
+
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="btn-group btn-group-toggle " data-toggle="buttons">
+          {% for d in dates %}
+            <label class="btn btn-secondary">
+              <input type="radio" name="selected_date" value="{{ d|date:'Y-m-d' }}" required>
+              {{ d|date:'F j' }}
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+    
+
+        <br><br>
+        <div class="text-center d-grid gap-3 col-4 mx-auto pb-4">
+          <button class="btn btn-primary btn-lg p-3 m-3 border-2" type="submit" value="Submit">Submit</button> 
+      </div>
+       
+
+
+</form>
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+{% else %}
+<h1 style="text-align: center;">Register to book a test or package</h1>
+
+{% endif %}
+
+
+
+</div>
+{% endblock body %}
+

@@ -1,0 +1,59 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+
+
+{% endblock head%}
+
+
+{% block title %}Order History {% endblock title %} 
+
+{% block body %} 
+<div style="background-color:#efeefb">
+
+{% for i in order_history %}
+
+    <div class="container py-5">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Booking : {{i.b_date}}</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <p class="card-text">Address : {{i.address}}</p>
+                        <p class="card-text">Booking Date : {{i.b_date}}</p>
+                        <p class="card-text">Schedule Date : {{i.sch_date}}</p>
+                        <p class="card-text">Schedule Time : {{i.sch_time}}</p>
+						<p class="card-text">Patient Name's :</p>
+							<ul class="">
+								{% for a in i.listof_patient.all %}
+								<li class="">{{ a.p_name }}</li>
+								{% endfor %}
+							  </ul>
+						{% if i.doctors.all %}
+                        <p class="card-text">Doctor Name : </p>
+							<ul class="">
+								{% for a in i.doctors.all %}
+								<li class="">{{ a.d_name }}</li>
+								{% endfor %}
+						</ul>
+                        {%endif%}
+
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+{% endfor %}
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+
+</div>
+{% endblock body %}
+

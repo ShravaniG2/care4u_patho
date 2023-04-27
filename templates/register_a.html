@@ -1,0 +1,150 @@
+{% extends 'masterpage.html' %}
+{% block head %}
+
+<style> 
+	body{
+    background-image: url("static/bg3.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+	h2{
+    text-align: center;
+		text-align-last: center;
+		color: #ffffff;
+		text-shadow: 1px 1px 3px #ababab;
+		font-family: "Verdana, sans-serif";
+  	font-size: 55px;
+  	letter-spacing: 2px;
+  	word-spacing: 1px; 
+
+	}
+	
+	h4{
+    text-align: center;
+		text-align-last: center;
+		color: #ffffff;
+    font-size: 30px;
+	}
+
+</style> 
+ {% endblock head%}
+
+{% block title %}Register {% endblock title%}
+
+{% block body %} 
+
+
+</br><h2><b>Admin Registration Page</b></h2></br>
+
+<h4>Ksndly enter all accurate details. </h4> </br>
+
+<div >
+	<form method="post" action="/register_a" autocomplete="on">
+		{% csrf_token %}
+
+    <div>
+			{% if messages %}
+			
+
+			{% for message in messages %} 
+      {%if "error" in message.tags %}
+          <div class="col-lg-5 mb-2 mx-auto">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">        
+			        <b>{{ message }}</b>         
+              <button type="button" class="btn-close btn-lx p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+			      </div>
+          </div>
+      {%endif%}
+			{% endfor %}
+      
+      {% for message in messages %} 
+      {%if "success" in message.tags %}
+          <div class="col-lg-5 mb-2 mx-auto">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+			        <b>{{ message }}</b> 
+              <button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+			      </div>
+          </div>
+      {%endif%}
+			{% endfor %}
+
+
+			{% endif %}		
+		</div>
+
+    
+    <!--to make floating label center-->
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mx-auto">
+
+    <div class="form-floating mb-4 ">
+      <input class="form-control" required="" type="text" maxlength="50" name="first_n" id="first_n" placeholder="jhanvi"></input>
+      <label for="FirstName">First Name</label>
+    </div>
+
+    <div class="form-floating mb-4 ">
+      <input class="form-control" required="" type="text" maxlength="50" name="last_n" id="last_n" required="" placeholder="pawar"></input>
+      <label for="LastName">Last Name</label>
+    </div>
+
+
+	<div id='toolbar'>
+      <div class="wrapper text-center mb-2" required=""><p><span style="color:White; font-size: 25px;">Select Gender</span></p>
+        <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group" required="">
+
+            <input type="radio" class="btn-check btn-dark" name="gender" id="btnradio1" value="Female">
+            <label class="btn btn-outline-primary btn-light" for="btnradio1">Female</label>
+  
+            <input type="radio" class="btn-check " name="gender" id="btnradio2" value="Male">
+            <label class="btn btn-outline-primary btn-light" for="btnradio2">Male</label>
+  
+            <input type="radio" class="btn-check " name="gender" id="btnradio3" value="Other">
+            <label class="btn btn-outline-primary btn-light" for="btnradio3">Other</label>
+        </div> 
+      </div>
+    </div>   
+
+
+     <div class="form-floating mb-4 ">
+    <input type="date" class="form-control" id="dob" name="dob" required="" >
+    <label for="dob">Date of birth</label>
+   </div>  
+
+
+    <div class="form-floating mb-4 ">
+      <input type="email" class="form-control" id="email" maxlength="50" required="" placeholder="abcd@xyz.com" name="email">
+      <label for="email">Email Address</label>
+    </div>
+    
+    <div class="form-floating  mb-4 ">          <!--special case for username -->
+    <input  class="form-control" id="phone" name="phone" pattern="\d*" maxlength="10" pattern="[0-9]{10}" type="tel" required="" placeholder="9876543210">
+    <label for="phone">Phone Number</label> 
+  </div>
+
+     <div class="form-floating mb-4">
+    <input type="text" class="form-control" id="id" placeholder="ID" name="id" required="">
+    <label for="ID">ID</label> 
+  </div>  
+
+		<div class="form-floating mb-4 ">
+    <input type="password" class="form-control" id="password" minlength="2" placeholder="Password" required="" name="password">
+    <label for="password">Password</label>
+  </div>
+
+  <div class="form-floating mb-4 ">
+  <input type="password" class="form-control" id="floatingPassword" minlength="2" placeholder="Password" name="repassword" required="">
+  <label for="floatingPassword">Re-enter Password</label>
+	</div>
+
+
+	<div class="text-center d-grid gap-3 col-4 mx-auto mb-3">
+    <button class="btn btn-primary btn-lg p-3 m-3 border-2" type="submit" value="Submit">Submit</button> 
+    </div>
+    
+    
+  </form>
+</div>
+
+
+
+{% endblock body %}

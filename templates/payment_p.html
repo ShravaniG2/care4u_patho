@@ -1,0 +1,132 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+
+<style>
+   
+	h2{
+        text-align: center;
+        text-align-last: center;
+        color: #000000;
+        text-shadow: 1px 1px 3px #ababab;
+        font-family: "Cambria";
+          font-size: 55px;
+          letter-spacing: 2px;
+          word-spacing: 1px; 
+        }
+        
+       
+    .container {
+        text-align: center;      
+    }
+
+    p {
+        font-size: 20px;
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        text-align: left;
+        color: #333;
+        text-align: center;      
+
+        margin: 0 0 10px; /* Add margin to separate paragraphs */
+      }
+      
+    
+      
+</style>
+  
+{% endblock head%}
+
+
+{% block title %}ForgetPassword {% endblock title %} 
+
+{% block body %} 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+<script>
+    $(document).ready(function() {
+        // Hide online/offline payment options and disable fields on page load
+        $('#online-payment, #offline-payment').hide();
+        $('#offline-payment input[type!="submit"]').prop('disabled', true);
+        $('#online-payment input[type!="submit"]').prop('disabled', true);
+        
+        // Show/hide payment options and enable/disable fields when radio buttons are clicked
+        $('input[name="payment_type"]').click(function() {
+            if ($(this).val() == 'offline') {
+                $('#online-payment').hide();
+                $('#offline-payment').show();
+                $('#offline-payment input[type!="submit"]').prop('disabled', false);
+            } else {
+                $('#offline-payment').hide();
+                $('#online-payment').show();
+                $('#online-payment input[type!="submit"]').prop('disabled', false);
+            }
+            $('#select-one-text').hide(); // hide the "select one" text
+        });
+        $('input[name="online_payment_type"]').click(function() {
+            $('#card-payment, #upi-payment, #net-banking-payment').hide();
+            $('#' + $(this).val() + '-payment').show();
+            $('#' + $(this).val() + '-payment input[type!="submit"]').prop('disabled', false);
+            $('#select-one-text').hide(); // hide the "select one" text
+        });
+        
+        // Show "select one" text if no radio buttons are selected
+        
+    });
+</script>
+
+
+
+
+
+
+
+    
+</br><h2><b>Payment Page</b></h2></br>
+
+
+	<form method="post" action="/cart/payment_p">
+  {% csrf_token %}
+
+
+  <div>
+    {% if messages %}
+        {% for message in messages %} 
+              {%if "success" in message.tags %}
+                  <div class="col-lg-5 mb-2 mx-auto">
+                       <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <b>{{ message }}</b> 
+                          <button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+              {%endif%}
+        {% endfor %}
+    {% endif %}		
+    </div>
+
+
+
+
+    <div class="container">
+
+		<label><input type="radio" name="payment_type" value="offline" > Offline Payment</label>
+		<label><input type="radio" name="payment_type" value="online"> Online Payment</label>
+        
+
+		<div id="offline-payment"><br>
+            <p>You selected OFFLINE Payment option.</p><br>
+			<input type="submit" value="Submit">
+		</div>
+		
+        <div id="online-payment"><br>
+            <p>You selected ONLINE Payment option.</p><br>
+			<input type="submit" value="Submit">
+
+		</div>
+    </div>
+    
+	</form><br><br>
+
+{% endblock body %}
+

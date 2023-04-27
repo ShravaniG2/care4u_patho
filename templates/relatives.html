@@ -1,0 +1,87 @@
+{% extends 'masterpage.html' %}
+{% block head %}
+<style> 
+
+	h2{
+        text-align: center;
+        text-align-last: center;
+        color: #000000;
+        text-shadow: 1px 1px 3px #ababab;
+        font-family: "Cambria";
+          font-size: 55px;
+          letter-spacing: 2px;
+          word-spacing: 1px; 
+        }
+
+</style> 
+
+
+{% endblock head%}
+
+
+{% block title %}Profile {% endblock title %} 
+
+{% block body %}
+</br><h2><b>Patient List Page</b></h2></br>
+
+
+<form method="POST" action="/userprofile/relatives" autocomplete="on">
+
+    {% csrf_token %}
+
+    <div>
+		{% if messages %}	
+
+			{% for message in messages %} 
+      			{%if "error" in message.tags %}
+        			<div class="col-lg-5 mb-2 mx-auto">
+        				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    						<b>{{ message }}</b> 
+        					<button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					</div> 
+      			{%endif%}
+			{% endfor %}
+
+			{% for message in messages %} 
+      			{%if "success" in message.tags %}
+          			<div class="col-lg-5 mb-2 mx-auto">
+           				<div class="alert alert-success alert-dismissible fade show" role="alert">
+			        		<b>{{ message }}</b> 
+              				<button type="button" class="btn-close btn-lg p-1 m-3 " data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					</div>
+      			{%endif%}
+			{% endfor %}
+		{% endif %}		
+		</div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mx-auto">
+        
+        
+        <div class="form-floating mb-4 ">
+            <input class="form-control" required="" type="text" maxlength="99" name="p_name" id="p_name" required="" placeholder="jhanvi"></input>
+            <label for="p_name">Name</label>
+        </div>
+
+
+        <div class="form-floating mb-4 ">
+            <input class="form-control" required="" type="tel" maxlength="3" name="p_age" id="p_age" placeholder="18"></input>
+            <label for="p_age">Age</label>
+        </div>
+
+        <!--<div class="form-floating mb-4 ">
+            <input class="form-control" required="" type="text" maxlength="50" name="p_gender" id="p_gender" placeholder="jhanvi"></input>
+            <label for="p_gender">Gender</label>
+        </div>-->
+        
+        
+        
+        <div class="text-center d-grid gap-3 col-4 mx-auto">
+            <button class="btn btn-primary btn-lg p-3 m-3 border-2" type="submit" value="Submit">Submit</button> 
+        </div>
+
+    </div>
+
+{% endblock body %}
+

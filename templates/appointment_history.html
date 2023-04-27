@@ -1,0 +1,44 @@
+{% extends 'masterpage.html' %}
+
+{% block head %}
+
+  
+{% endblock head%}
+
+
+{% block title %}Appointment History {% endblock title %} 
+
+{% block body %} 
+
+{% for i in app_history %}
+
+    <div class="container my-5">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Appointment {{i.appointment_date}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Patient Name : {{i.patient_name}}</p>
+                        <p class="card-text">Doctor Name : {{i.doc_name}}</p>
+                        <p class="card-text">Appointment Date : {{i.appointment_date}}</p>
+                        <p class="card-text">Schedule Date : {{i.sch_date}}</p>
+                        <p class="card-text">Schedule Time : {{i.sch_time}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endfor %}
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+
+
+
+{% endblock body %}
+
